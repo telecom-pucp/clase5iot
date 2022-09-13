@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script>
+            $(function () {
+                let socket = io();
+
+                $("#btnEnviar").click(function () {
+                    socket.emit('mensajeCli', $("#texto").val());
+                });
+
+                $("#btnEnviar2").click(function () {
+                    socket.emit('mensajeCli2', $("#texto2").val());
+                });
+
+                socket.on("foco", function (data) {
+                    $("#datoR").text(data);
+                });
+
+                socket.on("cantClienConn", function (cantidad) {
+                    $("#cantCli").text(cantidad);
+                });
+
+                socket.on("dataiot", function (dataiot) {
+                    $("#dataiot").text(dataiot.mensaje);
+                });
+                socket.on("dataiotClase5", function (dataiot) {
+                    console.log("temperatura: ", dataiot.temperatura);
+                    console.log("humedad: ", dataiot.humedad);
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Mi primera app con websockets</h1>
+        <input id="texto"/><br>
+        <button id="btnEnviar">enviar dato</button>
+        <br>
+        <label>Dato recibido: <span id="datoR"></span></label><br>
+        <input id="texto2"/><br>
+        <button id="btnEnviar2">enviar dato</button>
+        <br>
+        <label>Cantidad de clientes conectados: <span id="cantCli"></span></label><br>
+        <label>Data recibida de broker Mqtt <span id="dataiot"></span></label><br>
+    </body>
+</html>
