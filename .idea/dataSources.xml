@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:postgresql://18.204.195.62:5432/clase4</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="dataiot@localhost" uuid="b985f92e-1f79-4b0a-862a-6660a1fcaee4">
+      <driver-ref>cassandra</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.dbschema.CassandraJdbcDriver</jdbc-driver>
+      <jdbc-url>jdbc:cassandra://localhost:9042/dataiot</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
